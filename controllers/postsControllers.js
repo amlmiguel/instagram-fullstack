@@ -1,4 +1,4 @@
-const {Post,sequelize} = require('../models');
+const {Post,Usuario,sequelize} = require('../models');
 
 const postsControllers = {
     index: async (req, res) => {
@@ -37,6 +37,14 @@ const postsControllers = {
         })
 
         return res.json(postDeletado)
+    },
+    show: async (req, res) => {
+        let {id} = req.params;
+        let mostrarPosts = await Post.findAll({
+            where: {usuarios_id: id}
+        })
+        return res.json(mostrarPosts)
+    
     }
 
 }

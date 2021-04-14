@@ -8,6 +8,7 @@ router.get('/', usuariosControllers.index);
 router.post('/', usuariosControllers.create);
 router.put('/:id?', usuariosControllers.update);
 router.delete('/:id?', usuariosControllers.deleta);
+router.get('/:id?', usuariosControllers.show);
 
 
 
