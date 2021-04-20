@@ -2,8 +2,9 @@ const {Usuario,sequelize} = require('../models');
 
 const usuariosControllers = {
     index: async (req, res) => {
-        let usuarios = await Usuario.findAll();
-        return res.json(usuarios)
+        const usuarios = await Usuario.findAll();
+        
+        return res.render('usuarios', {listaUsuarios: usuarios})
     },
     create: async (req, res) => {
         let {nome, email, senha} = req.body

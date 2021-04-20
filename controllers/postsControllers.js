@@ -1,4 +1,4 @@
-const {Post,Usuario,sequelize} = require('../models');
+const {Post,sequelize} = require('../models');
 
 const postsControllers = {
     index: async (req, res) => {
