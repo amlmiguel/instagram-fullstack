@@ -19,6 +19,11 @@ main {
     /* 50px para cima e para baixo, 0px para laterais */
 }
 
+main.lista-posts {
+    flex-direction: column;
+
+}
+
 .logo {
     width: 150px;
 }
@@ -62,10 +67,12 @@ header .logo {
     width: 150px;
 }
 
+
 article {
     width: 600px;
     max-width: 100%;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    margin: 20px 0;
 }
 
 article .img-principal {

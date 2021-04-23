@@ -21,7 +21,12 @@ module.exports = async (req, res, next) => {
                         if(senha.length < 6){
                             res.status(400).json({erro: "A senha deverá conter pelo menos 6 caracteres"})
                         }else{
-                            next();
+                            if(user.length){
+                                res.status(400).render('registro', {erro: "Email já cadastrado"})
+                                return;
+                            }else{
+                                next();
+                            }
                         }
                     }
                 }

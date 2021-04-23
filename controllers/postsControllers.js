@@ -3,7 +3,9 @@ const { post } = require('../routes');
 
 const postsControllers = {
     index: async (req, res) => {
-        let posts = await Post.findAll();
+        const posts = await Post.findAll({
+            include: ['usuario','comentarios','curtiu']
+        });
 
         return res.render('index', {listaPosts: posts});
     },

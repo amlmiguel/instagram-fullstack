@@ -1,7 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
 
+    // define(nomeModel, colunas, config)
     const Post = sequelize.define(
-        'Post',{
+        "Post", {
             texto: DataTypes.STRING,
             img: DataTypes.STRING,
             usuarios_id: DataTypes.INTEGER,
@@ -13,21 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     Post.associate = (models) => {
-        // relação N:1 (vários posts de 1 usuário)
-        Post.belongsTo(models.Usuario, {as: "usuario", foreignKey: "usuarios_id"}) // models é da outra tabela
-        //relacao 1:N (usuario tem varios posts)
-        Post.hasMany(models.Comentario, {as:'comentarios', foreignKey:'usuarios_id'});
-        //relacao N:M (post tem curtidas de varios usuarios)
+        // relação N:1 (vários posts de 1 usuario)
+        Post.belongsTo(models.Usuario, { as: "usuario", foreignKey: "usuarios_id" });
+        // relação 1:N (post tem varios comentarios)
+        Post.hasMany(models.Comentario, { as: "comentarios", foreignKey: "posts_id" });
+        // relação N:M (post tem curtidas de varios usuarios)
         Post.belongsToMany(models.Usuario, {
-            as: "curtiu",
-            through: "curtidas",
-            foreignKey: "usuarios_id",
+            as: "curtiu", // alias da relação
+            through: "curtidas", // tabela intermediária
+            foreignKey: "posts_id",
             otherKey: "usuarios_id",
             timestamps: false
-
-
         })
     }
 
     return Post;
+
 }
